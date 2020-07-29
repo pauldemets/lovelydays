@@ -15,16 +15,26 @@
 			background: #F5F5F5;
 			padding: 2px 6px;
 		}
+		.imgDelete {
+			width: 20px;
+			height: 20px;
+		}
 	</style>
 
 	<div class="example-wrapper">
 		<h1>Liste des propriétés :</h1>
+		<ul>
+			{% for property in properties %}
+				<li>
+					<a href="">{{ property.name }}</a>
+					<a href="">
+						<img src="{{ asset('imgs/trash.png') }}" alt="delete" class="imgDelete">
+					</a>
 
-		{% for property in properties %}
-			<a>{{ property.name }}</a>
-		{% endfor %}
+				</li>
+			{% endfor %}
+		</ul>
 		<hr>
-
 		<a href="/add">
 			<button>Ajouter</button>
 		</a>

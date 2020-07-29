@@ -31,34 +31,8 @@
 		</a>
 		<h1>Ajouter une propriété !</h1>
 
-		<form class="ui form" action="store" method="POST">
-			<div class="form">
-				<span>Nom de la propriété :</span>
-				<input type="text" name="name">
-			</div>
+		{{ form(form) }}
 
-			<div class="form">
-				<span>Description :</span>
-				<textarea name="desc" id="" cols="30" rows="4"></textarea>
-			</div>
-
-			<div class="form">
-				<span>Propriétaire :</span>
-				<input type="text" name="">
-			</div>
-
-			<div class="form">
-				<span>Prix par mois :</span>
-				<input type="number" name="price">
-			</div>
-
-			<div class="form">
-				<span>Nombre de lits :</span>
-				<input type="integer" name="bed">
-			</div>
-
-			<button type="submit">Ajouter</button>
-		</form>
 
 
 	</div>

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Property;
+use App\Form\PropertyType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,35 +12,52 @@ use Symfony\Component\HttpFoundation\Request;
 class PropertyController extends AbstractController
 {
     /**
-     * @Route("/", name="property")
+     * @Route("/", name="IndexProperty")
      */
     public function index()
     {
         $repository = $this->getDoctrine()->getRepository(Property::class);
 
+        $property = new Property();
+        $form = $this->createForm(PropertyType::class, $property);
 
-        // looks for multiple products matching the given name, ordered by price
         $properties = $repository->findAll();
 
-        return $this->render('property/index.html.twig',array('properties' => $properties));
+        return $this->render(
+            'property/index.html.twig',
+            [
+                'form' => $form->createView(),
+                'properties' => $properties
+            ]
+        );
     }
 
     /**
-     * @Route("/add", name="property")
+     * @Route("/add", name="NewProperty")
      */
-    public function new()
+    public function new(Request $request)
     {
         $entityManager = $this->getDoctrine()->getManager();
 
+        $property = new Property();
+        $form = $this->createForm(PropertyType::class, $property);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $property = $form->getData();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($property);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('IndexProperty');        
+        }
+
         return $this->render('property/add.html.twig', [
+            'form' => $form->createView(),
             'controller_name' => 'PropertyController',
         ]);
     }
 
-    /**
-     * @Route("/store", name="store")
-     */
-    public function storeProperty(Request $request){
-        dd($request->request->get('name'));
-    }
+   
 }

@@ -10,7 +10,3 @@ index:
 add:
   path: /new
   controller: App\Controller\PropertyController::add
-
-store:
-  path: /store
-  controller: App\Controller\PropertyController::storeProperty
