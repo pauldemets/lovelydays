@@ -16,8 +16,18 @@
 			padding: 2px 6px;
 		}
 		.imgDelete {
-			width: 20px;
-			height: 20px;
+			width: 25px;
+			height: 25px;
+			vertical-align:middle;
+		}
+		.action {
+			
+		}
+		.item {
+			margin-bottom:10px;
+		}
+		a{
+			text-decoration:none;
 		}
 	</style>
 
@@ -25,10 +35,13 @@
 		<h1>Liste des propriétés :</h1>
 		<ul>
 			{% for property in properties %}
-				<li>
-					<a href="">{{ property.name }}</a>
-					<a href="">
+				<li class="item">
+					<a href="{{ path('detail', {'id': property.id}) }}">{{ property.name }}</a>
+					<a href="{{ path('delete', {'id': property.id}) }}" class="action">
 						<img src="{{ asset('imgs/trash.png') }}" alt="delete" class="imgDelete">
+					</a>
+					<a href="{{ path('update', {'id': property.id}) }}" class="action">
+						<img src="{{ asset('imgs/edit.png') }}" alt="" class="imgDelete">
 					</a>
 
 				</li>

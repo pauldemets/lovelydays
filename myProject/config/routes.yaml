@@ -10,3 +10,15 @@ index:
 add:
   path: /new
   controller: App\Controller\PropertyController::add
+
+delete:
+    path: /delete/{id}
+    controller: App\Controller\PropertyController::delete
+
+update:
+    path: /update/{id}
+    controller: App\Controller\PropertyController::update
+
+detail:
+    path: /detail/{id}
+    controller: App\Controller\PropertyController::detail

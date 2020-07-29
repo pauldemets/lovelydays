@@ -50,7 +50,7 @@ class PropertyController extends AbstractController
             $entityManager->persist($property);
             $entityManager->flush();
 
-            return $this->redirectToRoute('IndexProperty');        
+            return $this->redirectToRoute('IndexProperty');
         }
 
         return $this->render('property/add.html.twig', [
@@ -59,5 +59,72 @@ class PropertyController extends AbstractController
         ]);
     }
 
-   
+
+    /**
+     * @Route("/delete/{id}", name="deleteProperty")
+     */
+    public function delete($id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $property = $entityManager->getRepository(Property::class)->find($id);
+
+        if (!$property) {
+            throw $this->createNotFoundException(
+                'No property found for id ' . $id
+            );
+        }
+
+        $entityManager->remove($property);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('IndexProperty');
+    }
+
+    /**
+     * @Route("/update/{id}", name="updateProperty")
+     */
+    public function update($id, Request $request)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $property = $entityManager->getRepository(Property::class)->find($id);
+
+        $form = $this->createForm(PropertyType::class, $property);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $property = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($property);
+            $entityManager->flush();
+            $this->addFlash('success', 'Edit success !');
+            return $this->redirectToRoute('IndexProperty');
+        }
+
+        return $this->render('property/update.html.twig', [
+            'form' => $form->createView(),
+            'controller_name' => 'PropertyController',
+        ]);
+    }
+
+    /**
+     * @Route("/detail/{id}", name="detailProperty")
+     */
+    public function detail($id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $property = $entityManager->getRepository(Property::class)->find($id);
+
+        if (!$property) {
+            throw $this->createNotFoundException(
+                'No property found for id ' . $id
+            );
+        }
+
+        return $this->render(
+            'property/detail.html.twig',
+            [
+                'property' => $property
+            ]
+        );;
+    }
 }
