@@ -13,7 +13,7 @@ class Property
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @ORM\SequenceGenerator(sequenceName="id", initialValue=100)
+     * @ORM\SequenceGenerator(sequenceName="id", initialValue=150)
      * @ORM\Column(name="id",type="integer")
      */
     private $id;

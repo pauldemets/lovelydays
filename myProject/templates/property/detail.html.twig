@@ -22,24 +22,37 @@
 		.form {
 			margin-bottom: 10px;
 		}
+		#buttonBack {
+			float: right;
+		}
+		#title {
+			margin-bottom:5%;
+			padding-bottom:2px;
+		}
 		input {}
 	</style>
 
 	<div class="example-wrapper">
-		<a href="/">
-			<button>Retour</button>
+		<a href="/" id ="buttonBack" class="badge badge-primary">
+			Retour
 		</a>
-		<h1>Détails :</h1>
 
-		<p>Nom :
+		<h1 id="title" class="text-uppercase border-bottom border-primary">Détails :</h1>
+
+		<p>
+			<span class="font-weight-bold">Nom :</span>
 			{{property.name}}</p>
-		<p>Description :
+		<p>
+			<span class="font-weight-bold">Description :</span>
 			{{property.description}}</p>
-		<p>Prix :
+		<p>
+			<span class="font-weight-bold">Prix :</span>
 			{{property.price}}</p>
-		<p>Nombre de lits :
+		<p>
+			<span class="font-weight-bold">Nombre de lits :</span>
 			{{property.bedNumber}}</p>
-		<p>Propriétaire :
+		<p>
+			<span class="font-weight-bold">Propriétaire :</span>
 			{{property.owner.name}}</p>
 
 

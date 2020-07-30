@@ -18,24 +18,47 @@
 		.imgDelete {
 			width: 25px;
 			height: 25px;
-			vertical-align:middle;
+			vertical-align: middle;
 		}
-		.action {
-			
-		}
+		.action {}
 		.item {
-			margin-bottom:10px;
+			margin-bottom: 15px;
+			display: inline-block;
+			padding: 10px;
 		}
-		a{
-			text-decoration:none;
+		a {
+			text-decoration: none;
+		}
+		#title {}
+		#buttonAdd {
+			float: right;
+		}
+		li {
+			list-style-type: none;
+		}
+		.container {
+			margin-bottom: 5%;
 		}
 	</style>
 
 	<div class="example-wrapper">
-		<h1>Liste des propriétés :</h1>
+		<div class="container border-bottom">
+			<div id="buttonAdd">
+				<a href="/add" id="" class="badge badge-primary">
+					Ajouter une propriété
+				</a>
+				<br>
+				<a href="/addUser" id="" class="badge badge-primary">
+					Ajouter un utilisateur
+				</a>
+			</div>
+
+			<h1 id="title">Liste des propriétés :</h1>
+		</div>
+
 		<ul>
 			{% for property in properties %}
-				<li class="item">
+				<li class="item list-group-item list-group-item-light">
 					<a href="{{ path('detail', {'id': property.id}) }}">{{ property.name }}</a>
 					<a href="{{ path('delete', {'id': property.id}) }}" class="action">
 						<img src="{{ asset('imgs/trash.png') }}" alt="delete" class="imgDelete">
@@ -43,13 +66,9 @@
 					<a href="{{ path('update', {'id': property.id}) }}" class="action">
 						<img src="{{ asset('imgs/edit.png') }}" alt="" class="imgDelete">
 					</a>
-
 				</li>
+				<br>
 			{% endfor %}
 		</ul>
-		<hr>
-		<a href="/add">
-			<button>Ajouter</button>
-		</a>
 	</div>
 {% endblock %}

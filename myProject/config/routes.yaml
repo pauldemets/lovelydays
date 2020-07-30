@@ -22,3 +22,7 @@ update:
 detail:
     path: /detail/{id}
     controller: App\Controller\PropertyController::detail
+
+addUser:
+  path: /addUser
+  controller: App\Controller\UserController::new

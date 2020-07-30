@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter utilisateur
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+		.field {
+			margin-bottom: 10px;
+		}
+        #header{
+            margin-bottom:4%;
+        }
+	</style>
+
+	<div class="example-wrapper">
+		<div id="header" class="border-bottom border-primary">
+			<a href="/" id="buttonBack" class="badge badge-primary">
+				Retour
+			</a>
+			<h1 id="title">Ajouter une nouvel utilisateur !</h1>
+		</div>
+
+        {{ form(form) }}
+
+
+	</div>
+{% endblock %}

@@ -15,24 +15,89 @@
 			background: #F5F5F5;
 			padding: 2px 6px;
 		}
-		span {
-			float: left;
-			margin-right: 5px;
-		}
 		.form {
 			margin-bottom: 10px;
+		}
+		#buttonBack{
+			float:right;
+		}
+		#header{
+			margin-bottom:4%;
+		}
+		#myForm{
+			margin-bottom:4%;
 		}
 		input {}
 	</style>
 
 	<div class="example-wrapper">
-		<a href="/">
-			<button>Accueil</button>
-		</a>
-		<h1>Modifier une propriété !</h1>
+		<div id="header" class="border-bottom border-primary">
+			<a href="/" id="buttonBack" class="badge badge-primary">
+				Retour
+			</a>
+			<h1 id="title">Modifier une propriété !</h1>
+		</div>
 
-		{{ form(form) }}
 
+	{{ form_start(form) }}
+		<div class="my-custom-class-for-errors">
+			{{ form_errors(form) }}
+		</div>
+
+		<div class="form-group col" id="myForm">
+
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">
+						{{ form_label(form.name,'Nom') }}
+						{{ form_errors(form.name) }}
+					</span>
+				</div>
+				{{ form_widget(form.name) }}
+			</div>
+
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">
+						{{ form_label(form.description) }}
+						{{ form_errors(form.description) }}
+					</span>
+				</div>
+				{{ form_widget(form.description) }}
+			</div>
+
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">
+						{{ form_label(form.price,'Prix') }}
+						{{ form_errors(form.price) }}
+					</span>
+				</div>
+				{{ form_widget(form.price) }}
+			</div>
+
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">
+						{{ form_label(form.bedNumber,'Nombre de lits') }}
+						{{ form_errors(form.bedNumber) }}
+					</span>
+				</div>
+				{{ form_widget(form.bedNumber) }}
+			</div>
+
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">
+						{{ form_label(form.owner,'Propriétaire') }}
+						{{ form_errors(form.owner) }}
+					</span>
+				</div>
+				{{ form_widget(form.owner) }}
+			</div>
+		</div>
+
+		{{ form_end(form) }}
 
 
 	</div>
